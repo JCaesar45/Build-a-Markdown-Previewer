@@ -1,0 +1,92 @@
+** start of index.html **
+
+<div class="container">
+  <textarea id="editor"></textarea>
+  <div id="preview"></div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+
+** end of index.html **
+
+** start of styles.css **
+
+body {
+  font-family: Arial, sans-serif;
+  margin: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.container {
+  display: flex;
+  gap: 20px;
+  width: 90%;
+  max-width: 900px;
+}
+
+#editor {
+  width: 45%;
+  height: 400px;
+  padding: 10px;
+  font-family: monospace;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  resize: none;
+}
+
+#preview {
+  width: 50%;
+  height: 400px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  padding: 10px;
+  overflow-y: auto;
+  background-color: #f9f9f9;
+}
+
+** end of styles.css **
+
+
+** start of script.jxs **
+
+const editor = document.getElementById("editor");
+const preview = document.getElementById("preview");
+
+// Default markdown text (includes all required elements)
+const defaultMarkdown = `# Heading (H1)
+## Subheading (H2)
+
+[FreeCodeCamp](https://www.freecodecamp.org)
+
+Inline \`code\`
+
+\`\`\`
+Code block
+function example() {
+  console.log("Hello World");
+}
+\`\`\`
+
+- List item
+
+> Blockquote
+
+![Image](https://via.placeholder.com/150)
+
+**Bold text**
+`;
+
+// Load default markdown in textarea and preview
+editor.value = defaultMarkdown;
+preview.innerHTML = marked.parse(defaultMarkdown);
+
+// Update preview as you type
+editor.addEventListener("input", () => {
+  preview.innerHTML = marked.parse(editor.value);
+});
+
+** end of script.jxs **
+
